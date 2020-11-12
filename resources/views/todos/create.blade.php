@@ -8,7 +8,7 @@
         <x-Flash />
     </div>
 
-    <form class=" pt-3 flex justify-center" action="/todos/create" method="post">
+    <form class=" pt-3" action="/todos/create" method="post">
         @csrf
 
         <div class="flex justify-center items-center border-b border-teal-500 py-2 ">
@@ -21,7 +21,7 @@
                 Create
             </button>
             <a href="/todos"
-                class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded">
+                class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded mx-2">
                 Back
             </a>
         </div>
