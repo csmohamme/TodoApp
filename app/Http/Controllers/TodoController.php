@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodoCreateRequest;
 use App\Todo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class TodoController extends Controller
 {
@@ -44,17 +43,6 @@ class TodoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Todo  $todo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Todo $todo)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Todo  $todo
@@ -74,8 +62,9 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(TodoCreateRequest $request, Todo $todo)
     {
+
         $todo->update(['title' => $request->title]);
         return redirect(route('todos.index'))->with('message', 'Updated!');
     }

@@ -4,7 +4,7 @@
     <div class="border-b border-teal-500 py-3">
 
         <h1 class="text-2xl">Update ToDo list</h1>
-
+        <x-Flash />
     </div>
 
     <form class=" pt-3 flex justify-center" action="{{ route('todo.update', $todo->id) }}" method="post">
