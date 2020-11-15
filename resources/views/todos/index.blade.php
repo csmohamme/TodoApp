@@ -19,16 +19,17 @@
                 @if ($todo->completed)
                     <p class="line-through px-20">{{ $todo->title }}</p>
                 @else
-                    <p class="px-20">{{ $todo->title }}</p>
+                    <a class="px-20" href="{{ route('todo.show', $todo->id) }}">{{ $todo->title }}</a>
 
                 @endif
                 <div>
                     <a href="{{ route('todo.edit', $todo->id) }} "><span class="fas fa-edit text-teal-400 px-4"></span></a>
                     <span onclick="event.prevetDefault;
-                                                            if(confirm('Are you really wana delete?')){
-                                                                document.getElementById('form-delete-{{ $todo->id }}').submit()
-                                                            }
-                                                            " class="fas fa-trash text-red-400 px-4 cursor-pointer"></span>
+                                                                    if(confirm('Are you really wana delete?')){
+                                                                        document.getElementById('form-delete-{{ $todo->id }}').submit()
+                                                                    }
+                                                                    "
+                        class="fas fa-trash text-red-400 px-4 cursor-pointer"></span>
                     <form action="{{ route('todo.destroy', $todo->id) }}" id="{{ 'form-delete-' . $todo->id }}"
                         class="display-none" method="post">
                         @csrf

@@ -43,7 +43,12 @@ class TodoController extends Controller
     public function store(TodoCreateRequest $request)
     {
         auth()->user()->todos()->create($request->all());
-        return redirect()->back()->with('message', 'Todo Created Successfully');
+        return redirect(route('todo.index'))->with('message', 'Todo Created Successfully');
+    }
+
+    public function show(Todo $todo)
+    {
+        return view('todos.show', compact('todo'));
     }
 
     /**
@@ -67,7 +72,7 @@ class TodoController extends Controller
     public function update(TodoCreateRequest $request, Todo $todo)
     {
 
-        $todo->update(['title' => $request->title]);
+        $todo->update(['title' => $request->title, 'description' => $request->description]);
         return redirect(route('todo.index'))->with('message', 'Updated!');
     }
 

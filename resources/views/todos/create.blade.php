@@ -12,9 +12,21 @@
         @csrf
 
         <div class="flex justify-center items-center border-b border-teal-500 py-2 ">
+
             <input
                 class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 type="text" placeholder="Letus statr" name=" title">
+        </div>
+
+        <div class="flex justify-center items-center border-b border-teal-500 py-2 ">
+            <textarea name="description" id=""
+                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                placeholder="descripe your task"></textarea>
+
+        </div>
+
+        <div class="flex justify-between items-center pt-2 ">
+
             <button
                 class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 hover:border-teal-700 text-sm  text-white py-1 px-2 rounded"
                 type="submit">
@@ -25,6 +37,7 @@
                 Back
             </a>
         </div>
+
     </form>
 
 @endsection
