@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::orderBy('completed')->get();
+        $todos = auth()->user()->todos->sortBy('completed');
 
         return view('todos.index', compact('todos'));
     }
@@ -27,7 +31,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        return view('todos.create');
+        return view('todos/create');
     }
 
     /**
@@ -38,7 +42,7 @@ class TodoController extends Controller
      */
     public function store(TodoCreateRequest $request)
     {
-        Todo::create($request->all());
+        auth()->user()->todos()->create($request->all());
         return redirect()->back()->with('message', 'Todo Created Successfully');
     }
 
@@ -50,8 +54,6 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        // $todos = Todo::find($todo);
-        // dd($todo->title);
         return view('todos.edit', compact('todo'));
     }
 
@@ -66,7 +68,7 @@ class TodoController extends Controller
     {
 
         $todo->update(['title' => $request->title]);
-        return redirect(route('todos.index'))->with('message', 'Updated!');
+        return redirect(route('todo.index'))->with('message', 'Updated!');
     }
 
     /**
